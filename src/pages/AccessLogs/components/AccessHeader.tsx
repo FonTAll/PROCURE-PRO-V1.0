@@ -1,0 +1,31 @@
+import React from 'react';
+import { Shield, RefreshCw } from 'lucide-react';
+
+interface AccessHeaderProps {
+  isLoading: boolean;
+  onRefresh: () => void;
+}
+
+export function AccessHeader({ isLoading, onRefresh }: AccessHeaderProps) {
+  return (
+    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div>
+        <div className="flex items-center gap-3">
+          <div className="p-2 bg-primary rounded-lg text-white">
+            <Shield size={20} />
+          </div>
+          <h1 className="sys-title-main">System Access Logs</h1>
+        </div>
+        <p className="sys-title-sub">Audit trail of all user logins and logouts across the application.</p>
+      </div>
+      <button 
+        onClick={onRefresh}
+        disabled={isLoading}
+        className="sys-btn-secondary whitespace-nowrap self-start sm:self-auto"
+      >
+        <RefreshCw size={14} className={isLoading ? 'animate-spin' : ''} />
+        Refresh Logs
+      </button>
+    </div>
+  );
+}
